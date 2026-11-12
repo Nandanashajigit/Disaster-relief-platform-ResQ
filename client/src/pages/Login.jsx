@@ -52,16 +52,7 @@ export default function Login({ user, t, toast, onLogin }) {
           {t('noAccount')} <Link to="/register" className="fw-semibold" style={{ color: '#e63946' }}>{t('register')}</Link>
         </p>
 
-        <div className="mt-4 pt-3" style={{ borderTop: '1px solid var(--line)' }}>
-         
-          <div className="d-flex flex-wrap gap-2">
-            {DEMOS.map(([label, demoEmail]) => (
-              <button type="button" key={label} className="demo-btn" onClick={() => { setEmail(demoEmail); setPassword('resq123'); }}>
-                {label}
-              </button>
-            ))}
-          </div>
-        </div>
+        
       </form>
     </div>
   );
