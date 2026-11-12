@@ -6,8 +6,8 @@ const jwt = require('jsonwebtoken');
 const db = require('./db');
 const { fail, wrap } = require('./helpers');
 
-const SECRET = 'resq-demo-secret';
-const COORDINATOR_CODE = 'RESQ2026'; 
+const SECRET = process.env.JWT_SECRET || 'resq-demo-secret';
+const COORDINATOR_CODE = process.env.COORDINATOR_CODE || 'RESQ2026'; 
 const router = express.Router();
 
 function withoutPassword(user) {
