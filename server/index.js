@@ -23,8 +23,17 @@ app.use('/api', require('./camps'));
 app.use('/api', require('./stats'));
 app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
 
+
+const websitePath = path.join(__dirname, '..', 'client', 'dist');
+if (fs.existsSync(websitePath)) {
+  app.use(express.static(websitePath));
+
+  app.get('*', (req, res) => res.sendFile(path.join(websitePath, 'index.html')));
+}
+
 const server = http.createServer(app);
 const io = new Server(server);
 app.set('io', io); 
 
-server.listen(5000, () => console.log('ResQ API running on http://localhost:5000'));
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log('ResQ running on port ' + PORT));
